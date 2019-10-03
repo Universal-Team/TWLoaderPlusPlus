@@ -1,0 +1,27 @@
+--atlas -f rgba -z auto
+sprites/blank_128x115.png
+sprites/bottom.png
+sprites/box.png
+sprites/boxart_null.png
+sprites/boxart_unknown.png
+sprites/brace.png
+sprites/bubble.png
+sprites/button_arrow.png
+sprites/cart_ctr.png
+sprites/cart_ntr.png
+sprites/cart_null.png
+sprites/cart_twl.png
+sprites/dialogbox.png
+sprites/getfcgamebox.png
+sprites/homeicon.png
+sprites/icon_gb.png
+sprites/icon_gbc.png
+sprites/icon_nes.png
+sprites/icon_null.png
+sprites/icon_unk.png
+sprites/scroll_window.png
+sprites/scroll_windowfront.png
+sprites/scrollbar.png
+sprites/settingsbox.png
+sprites/start_border.png
+sprites/top.png

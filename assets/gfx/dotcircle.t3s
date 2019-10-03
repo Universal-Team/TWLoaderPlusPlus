@@ -1,0 +1,20 @@
+--atlas -f rgba -z auto
+dotcircle/0-gray.png
+dotcircle/1-brown.png
+dotcircle/2-red.png
+dotcircle/3-pink.png
+dotcircle/4-orange.png
+dotcircle/5-yellow.png
+dotcircle/6-yellowgreen.png
+dotcircle/7-green1.png
+dotcircle/8-green2.png
+dotcircle/9-lightgreen.png
+dotcircle/10-skyblue.png
+dotcircle/11-lightblue.png
+dotcircle/12-blue.png
+dotcircle/13-violet.png
+dotcircle/14-purple.png
+dotcircle/15-fuchsia.png
+dotcircle/16-red_and_blue.png
+dotcircle/17-green_and_yellow.png
+dotcircle/18-christmas.png
