@@ -24,67 +24,20 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "gui.hpp"
-
-#include "screens/mainMenu.hpp"
+#include "screens/dsiMenu.hpp"
 #include "screens/screenCommon.hpp"
 
-#include <3ds.h>
-#include <citro2d.h>
-#include <citro3d.h>
+void DSiMenu::Draw(void) const {
+	set_screen(top);
+	Gui::sprite(2, dsi_gray_idx, 0, 0);
+	Gui::sprite(0, sprites_top_idx, 0, 0);
+	set_screen(bottom);
+	Gui::sprite(0, sprites_bottom_idx, 0, 0);
+}
 
-bool exiting = false;
-int fadealpha = 255;
-bool fadein = true;
-touchPosition touch;
-
-int main()
-{
-	gfxInitDefault();
-	romfsInit();
-	Gui::init();
-	aptInit();
-	amInit();
-	sdmcInit();
-	srvInit();
-	hidInit();
-	acInit();
-	cfguInit();
-
-	osSetSpeedupEnable(true);	// Enable speed-up for New 3DS users
-
-	Gui::setScreen(std::make_unique<MainMenu>());
-
-	// Loop as long as the status is not exit
-	while (aptMainLoop() && !exiting)
-	{
-		hidScanInput();
-		u32 hHeld = hidKeysHeld();
-		u32 hDown = hidKeysDown();
-		hidTouchRead(&touch);
-		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-		C2D_TargetClear(top, BLACK);
-		C2D_TargetClear(bottom, BLACK);
-		Gui::clearTextBufs();
-		Gui::mainLoop(hDown, hHeld, touch);
-		C3D_FrameEnd(0);
-
-		if (fadein == true) {
-			fadealpha -= 3;
-			if (fadealpha < 0) {
-				fadealpha = 0;
-				fadein = false;
-			}
-		}
+void DSiMenu::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
+	if (hDown & KEY_B) {
+		Gui::screenBack();
+		return;
 	}
-
-	cfguExit();
-	Gui::exit();
-	hidExit();
-	srvExit();
-	romfsExit();
-	sdmcExit();
-	aptExit();
-
-	return 0;
 }

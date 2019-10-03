@@ -24,67 +24,18 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "gui.hpp"
+#ifndef ACEKARD_HPP
+#define ACEKARD_HPP
 
-#include "screens/mainMenu.hpp"
-#include "screens/screenCommon.hpp"
+#include "screens/screen.hpp"
 
-#include <3ds.h>
-#include <citro2d.h>
-#include <citro3d.h>
-
-bool exiting = false;
-int fadealpha = 255;
-bool fadein = true;
-touchPosition touch;
-
-int main()
+class Acekard : public SCREEN 
 {
-	gfxInitDefault();
-	romfsInit();
-	Gui::init();
-	aptInit();
-	amInit();
-	sdmcInit();
-	srvInit();
-	hidInit();
-	acInit();
-	cfguInit();
+public:
+	void Draw(void) const override;
+	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 
-	osSetSpeedupEnable(true);	// Enable speed-up for New 3DS users
+private:
+};
 
-	Gui::setScreen(std::make_unique<MainMenu>());
-
-	// Loop as long as the status is not exit
-	while (aptMainLoop() && !exiting)
-	{
-		hidScanInput();
-		u32 hHeld = hidKeysHeld();
-		u32 hDown = hidKeysDown();
-		hidTouchRead(&touch);
-		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-		C2D_TargetClear(top, BLACK);
-		C2D_TargetClear(bottom, BLACK);
-		Gui::clearTextBufs();
-		Gui::mainLoop(hDown, hHeld, touch);
-		C3D_FrameEnd(0);
-
-		if (fadein == true) {
-			fadealpha -= 3;
-			if (fadealpha < 0) {
-				fadealpha = 0;
-				fadein = false;
-			}
-		}
-	}
-
-	cfguExit();
-	Gui::exit();
-	hidExit();
-	srvExit();
-	romfsExit();
-	sdmcExit();
-	aptExit();
-
-	return 0;
-}
+#endif

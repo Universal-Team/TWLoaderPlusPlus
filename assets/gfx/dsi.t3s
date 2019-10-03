@@ -1,6 +1,6 @@
 --atlas -f rgba -z auto
-dsi/0-gray.png
-dsi/1-brown.png
-dsi/2-red.png
-dsi/3-pink.png
-dsi/4-orange.png
+dsi/gray.png
+dsi/brown.png
+dsi/red.png
+dsi/pink.png
+dsi/orange.png

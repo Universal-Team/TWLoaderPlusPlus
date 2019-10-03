@@ -24,23 +24,19 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "screens/mainMenuScreen.hpp"
+#include "screens/r4.hpp"
 #include "screens/screenCommon.hpp"
 
-extern bool exiting;
-
-void MainMenu::Draw(void) const {
+void R4::Draw(void) const {
 	set_screen(top);
-	Gui::sprite(2, dsi_4_orange_idx, 0, 0);
-	Gui::sprite(0, sprites_top_idx, 0, 0);
-	Gui::DrawString((400-Gui::GetStringWidth(0.8f, "Press Start to exit."))/2, 0, 0.8f, BLACK, "Press Start to exit.", 400);
-
+	Gui::sprite(3, r4_bckgrd_2_idx, 40, 0);
 	set_screen(bottom);
-	Gui::sprite(0, sprites_bottom_idx, 0, 0);
+	Gui::sprite(3, r4_bckgrd_1_idx, 0, 0);
 }
 
-void MainMenu::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
-	if (hDown & KEY_START) {
-		exiting = true;
+void R4::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
+	if (hDown & KEY_B) {
+		Gui::screenBack();
+		return;
 	}
 }
