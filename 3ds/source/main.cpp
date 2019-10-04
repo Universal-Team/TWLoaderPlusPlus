@@ -29,9 +29,12 @@
 #include "screens/mainMenu.hpp"
 #include "screens/screenCommon.hpp"
 
+#include "utils/config.hpp"
+
 #include <3ds.h>
 #include <citro2d.h>
 #include <citro3d.h>
+#include <dirent.h>
 
 bool exiting = false;
 int fadealpha = 255;
@@ -51,7 +54,13 @@ int main()
 	acInit();
 	cfguInit();
 
+	mkdir("sdmc:/TWLoaderPlusPlus", 0777); // MainPath.
+	mkdir("sdmc:/3ds", 0777); // DSP Path.
+
 	osSetSpeedupEnable(true);	// Enable speed-up for New 3DS users
+
+	Config::createTWLoaderPPIni();
+	Config::loadTWLoaderPPIni();
 
 	Gui::setScreen(std::make_unique<MainMenu>());
 

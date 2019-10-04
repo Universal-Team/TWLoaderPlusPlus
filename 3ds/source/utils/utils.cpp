@@ -35,6 +35,6 @@ void LaunchTWLMode(void)
 	u8 hmac[0x20];
 	memset(param, 0, sizeof(param));
 	memset(hmac, 0, sizeof(hmac));
-	APT_PrepareToDoApplicationJump(0, 0x0004800453524C41ULL, MEDIATYPE_NAND); // Launch TWiLightMenu for now, until the new DSiWare App is done.
+	APT_PrepareToDoApplicationJump(0, 0x00048015534C524EULL, MEDIATYPE_NAND); // Launch TWiLightMenu Last Run ROM for now, until the new DSiWare App is done.
 	APT_DoApplicationJump(param, sizeof(param), hmac);
 }
