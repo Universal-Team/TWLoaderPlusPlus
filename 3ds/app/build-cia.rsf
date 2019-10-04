@@ -1,6 +1,6 @@
 BasicInfo:
-  Title                   : "DOWN LOADER"
-  ProductCode             : "CTR-H-DWLD"
+  Title                   : "TWLoaderPP"
+  ProductCode             : "CTR-H-TWLP"
   Logo                    : Homebrew # Nintendo / Licensed / Distributed / iQue / iQueForSystem
 
 RomFs:
