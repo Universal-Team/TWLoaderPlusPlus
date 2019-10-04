@@ -24,36 +24,17 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "screens/acekard.hpp"
-#include "screens/dsiMenu.hpp"
-#include "screens/mainMenu.hpp"
-#include "screens/r4.hpp"
-#include "screens/screenCommon.hpp"
-
 #include "utils/utils.hpp"
 
-extern bool exiting;
+#include <3ds.h>
+#include <cstring>
 
-void MainMenu::Draw(void) const {
-	set_screen(top);
-	Gui::sprite(2, dsi_orange_idx, 0, 0);
-	Gui::sprite(0, sprites_top_idx, 0, 0);
-	Gui::DrawString((400-Gui::GetStringWidth(0.8f, "Press Start to exit."))/2, 0, 0.8f, BLACK, "Press Start to exit.", 400);
-
-	set_screen(bottom);
-	Gui::sprite(0, sprites_bottom_idx, 0, 0);
-}
-
-void MainMenu::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
-	if (hDown & KEY_START) {
-		exiting = true;
-	} else if (hDown & KEY_X) {
-		Gui::setScreen(std::make_unique<Acekard>());
-	} else if (hDown & KEY_L) {
-		Gui::setScreen(std::make_unique<DSiMenu>());
-	} else if (hDown & KEY_Y) {
-		Gui::setScreen(std::make_unique<R4>());
-	} else if (hDown & KEY_A) {
-		LaunchTWLMode();
-	}
+void LaunchTWLMode(void)
+{
+	u8 param[0x300];
+	u8 hmac[0x20];
+	memset(param, 0, sizeof(param));
+	memset(hmac, 0, sizeof(hmac));
+	APT_PrepareToDoApplicationJump(0, 0x0004800453524C41ULL, MEDIATYPE_NAND); // Launch TWiLightMenu for now, until the new DSiWare App is done.
+	APT_DoApplicationJump(param, sizeof(param), hmac);
 }
